@@ -51,6 +51,7 @@
 #   USE_SYSLOG        Syslog module
 #   USE_V4L2          Video4Linux2 module
 #   USE_WINWAVE       Windows audio driver
+#   USE_WIRING_PI     GPIO Interface library for the Raspberry Pi
 #   USE_X11           X11 video output
 #
 
@@ -252,6 +253,12 @@ endif
 
 ifneq ($(USE_GTK),)
 USE_LIBNOTIFY := $(shell pkg-config 'libnotify glib-2.0 < 2.40' && echo "yes")
+endif
+
+ifneq ($(USE_WIRING_PI),)
+USE_WIRING_PI := $(shell [ -f $(SYSROOT)/include/wiringPi.h ] || \
+	[ -f $(SYSROOT_LOCAL)/include/wiringPi.h ] || \
+	[ -f $(SYSROOT_ALT)/include/wiringPi.h ] && echo "yes")
 endif
 
 endif
@@ -460,4 +467,7 @@ MODULES   += dshow
 endif
 ifneq ($(USE_RTCPSUMMARY),)
 MODULES   += rtcpsummary
+endif
+ifneq ($(USE_WIRING_PI),)
+MODULES   += vox
 endif

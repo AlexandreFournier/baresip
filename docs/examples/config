@@ -79,6 +79,7 @@ module			g711.so
 
 # Audio filter Modules (in encoding order)
 #module			vumeter.so
+#module			vox.so
 #module			sndfile.so
 #module			speex_pp.so
 #module			plc.so
@@ -207,6 +208,12 @@ ice_nomination		regular	# {regular,aggressive}
 #mqtt_broker_user	alfred
 #mqtt_broker_password	Crocus
 #mqtt_basetopic		baresip/01 # May be uniqe for each client you want to control. Defaults to "baresip"
+
+# VOX
+#vox_threshold		50
+#vox_holdtime		500
+#vox_gpio_ptt		11
+#vox_gpio_squelch	10
 
 # sndfile
 #snd_path		/tmp
